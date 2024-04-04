@@ -18,7 +18,7 @@ const QZone = () => {
                 <img className='position-absolute ' src={bg} alt="" />
                 <h1 className='position-relative  text-white text-center h2 d-inline-block m-5'>Create an Amazing Newspaper</h1>
                 <p className=' text-white position-relative m-5  d-inline-block mt-5  '>Discover thousands of options, easy to customize layouts, one-click to import demo and much more.</p>
-                <Button className='position-relative' size="lg" variant="danger">Learn More</Button>{' '}
+                <Button className='position-relative' size="lg" variant="danger">Learn More</Button>
             </div>
 
         </div >
