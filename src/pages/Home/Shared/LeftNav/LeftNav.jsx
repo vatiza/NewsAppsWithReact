@@ -1,9 +1,12 @@
+import { Button } from "react-bootstrap";
 
 
 const LeftNav = () => {
     return (
         <div>
-            <h1>The left navitation</h1>
+            <h3>Login with</h3>
+            <Button variant="outline-primary">Primary</Button>
+            <Button variant="outline-secondary">Secondary</Button>
         </div>
     );
 };
