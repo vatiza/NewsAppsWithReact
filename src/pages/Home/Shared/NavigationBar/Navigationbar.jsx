@@ -28,8 +28,8 @@ const Navigationbar = () => {
                            </FaUserCircle>}
                             
                               { user ?
-                                  <Button variant="primary"><Link to='/login'></Link> Logout</Button>:
-                                  <Button variant="primary">Login</Button>
+                                  <Button variant="primary">Logout</Button>:
+                                  <Link to='/login'> <Button variant="primary">Login</Button></Link>
                               }
                         
 
