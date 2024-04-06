@@ -10,10 +10,10 @@ const News = () => {
     const news=useLoaderData();
     const { title, _id, details, image_url,category_id, author, total_view, rating } = news;
    
-    
     return (
         <div>
-        <Card >
+
+        <Card>
             <Card.Img variant="top" src={image_url} />
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
