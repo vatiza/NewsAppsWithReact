@@ -1,14 +1,31 @@
 
+import { useContext } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
+  const{signIn}=useContext(AuthContext);
+  const handleLogin=event=>{
+    event.preventDefault();
+    const form=event.target;
+    const email=form.email.value;
+    const pass=form.password.value;
+    signIn(email,pass)
+    .then(result=>{
+      const logedUser=result.user;
+      console.log(logedUser);
+      alert('login succesfully');
+    })
+    .catch(error=>{console.log(error)})
+    
+  }
   return (
     <Container className="w-25 mx-auto">
       <h2>Plase Login</h2>
-      <Form>
+      <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" name="email" placeholder="Enter email" />
@@ -24,7 +41,7 @@ const Login = () => {
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Submit
+          Login
         </Button>
         <br></br>
         <Form.Text className="text-secendary">
