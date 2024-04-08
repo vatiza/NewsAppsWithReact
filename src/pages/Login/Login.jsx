@@ -1,27 +1,30 @@
-
 import { useContext } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
-
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const{signIn}=useContext(AuthContext);
-  const handleLogin=event=>{
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogin = (event) => {
     event.preventDefault();
-    const form=event.target;
-    const email=form.email.value;
-    const pass=form.password.value;
-    signIn(email,pass)
-    .then(result=>{
-      const logedUser=result.user;
-      console.log(logedUser);
-      alert('login succesfully');
-    })
-    .catch(error=>{console.log(error)})
-    
-  }
+    const form = event.target;
+    const email = form.email.value;
+    const pass = form.password.value;
+    signIn(email, pass)
+      .then((result) => {
+        const logedUser = result.user;
+        console.log(logedUser);
+        alert("login succesfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <Container className="w-25 mx-auto">
       <h2>Plase Login</h2>
