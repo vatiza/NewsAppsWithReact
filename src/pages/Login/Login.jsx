@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/category/0";
-  console.log(location);
+
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
