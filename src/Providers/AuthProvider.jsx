@@ -25,7 +25,7 @@ const logOut=()=>{
 }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
-      console.log("logged uer in sign in already in side", loggedUser);
+   
       setUser(loggedUser);
     });
     return () => {
