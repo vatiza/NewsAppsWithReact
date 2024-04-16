@@ -1,5 +1,4 @@
-
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -7,25 +6,27 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
-const {createUser}   =useContext(AuthContext);
-    const handleRegister = (event) => {
-      event.preventDefault();
-      const form = event.target;
-      const name = form.name.value;
-      const photoUrl = form.photoUrl.value;
-      const email = form.email.value;
-      const pass = form.password.value;
-      createUser(email, pass)
-      .then(result => {
-          const loggedUser = result.user;
-          console.log(loggedUser);
+  const [accepted, setAccept] = useState(false);
+  const { createUser } = useContext(AuthContext);
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photoUrl = form.photoUrl.value;
+    const email = form.email.value;
+    const pass = form.password.value;
+    createUser(email, pass)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
       })
-      .catch(error => {
-          console.log(error.message);
-      })
-
-    };
-    
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  const handleAcceptTerms = (event) => {
+    setAccept(event.target.checked);
+  };
 
   return (
     <Container className="w-25 mx-auto">
@@ -56,8 +57,19 @@ const {createUser}   =useContext(AuthContext);
             placeholder="Password"
           />
         </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check
+            onClick={handleAcceptTerms}
+            type="checkbox"
+            label={
+              <>
+                Accept <Link to="/terms">Terms and Coditions</Link>
+              </>
+            }
+          />
+        </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" disabled={!accepted} type="submit">
           Submit
         </Button>
         <br></br>

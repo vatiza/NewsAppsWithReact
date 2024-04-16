@@ -7,19 +7,23 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../Firebase/Firebase.config";
-
 const auth = getAuth(app);
 export const AuthContext = createContext(null);
+
 const AuthProvider = ({ children }) => {
+  const [loader,setLoader]=useState(true);
   const [user, setUser] = useState(null);
 
   const createUser = (email, pass) => {
+    setLoader(true);
     return createUserWithEmailAndPassword(auth, email, pass);
   };
   const signIn = (email, pass) => {
+    setLoader(true)
     return signInWithEmailAndPassword(auth, email, pass);
   };
 const logOut=()=>{
+  setLoader(true)
   return signOut(auth);
 
 }
@@ -27,6 +31,7 @@ const logOut=()=>{
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
    
       setUser(loggedUser);
+      setLoader(false);
     });
     return () => {
       unsubscribe();
@@ -34,6 +39,7 @@ const logOut=()=>{
   }, []);
   const authInfo = {
     user,
+    loader,
     createUser,
     signIn,
     logOut,

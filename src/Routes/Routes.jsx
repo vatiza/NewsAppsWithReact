@@ -8,6 +8,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
 import { Navigate } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
+import Terms from "../pages/Home/Shared/Terms/Terms";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/terms",
+        element: <Terms></Terms>,
       },
     ],
   },
