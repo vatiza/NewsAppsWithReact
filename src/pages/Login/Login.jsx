@@ -5,13 +5,16 @@ import Form from "react-bootstrap/Form";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import useTitle from "../../useHooks/useHooks";
 const Login = () => {
+  useTitle("Login");
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/category/0";
 
   const handleLogin = (event) => {
+   
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
@@ -21,7 +24,7 @@ const Login = () => {
         const logedUser = result.user;
         console.log(logedUser);
         alert("login succesfully");
-        navigate(from,{replace:true});
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
