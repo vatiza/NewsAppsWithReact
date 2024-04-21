@@ -9,11 +9,16 @@ import Register from "../pages/Login/Register";
 import { Navigate } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Terms from "../pages/Home/Shared/Terms/Terms";
+import GoogleMap from "../GoogleMap/GoogleMap";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginLayout></LoginLayout>,
     children: [
+      {
+        path: "/location",
+        element: <GoogleMap></GoogleMap>,
+      },
       {
         path: "/",
         element: <Navigate to="/category/0"></Navigate>,
@@ -44,6 +49,7 @@ const router = createBrowserRouter([
             `https://news-app-js-server.vercel.app/categories/${params.id}`
           ),
       },
+     
     ],
   },
   {
